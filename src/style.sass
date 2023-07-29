@@ -32,6 +32,9 @@ $transition: 0.15s
 $media-tablet: "only screen and (max-width: 590px)"
 $media-mobile: "only screen and (max-width: 375px)"
 
+*
+    box-sizing: border-box
+
 body
     font-family: $font-stack
     font-weight: $font-weight-bold
@@ -48,9 +51,9 @@ body
 
 .container
     width: 714px
-    height: 531px
+    height: 581px
     background: $color-white
-    padding: 42px 43px
+    padding: 44px 43px
     border-radius: 25px 25px 200px 25px
     .input
         display: flex
@@ -66,7 +69,7 @@ body
                 letter-spacing: $letter-spacing
             input
                 height: 65px
-                width: 123px
+                width: 143px
                 padding: 0 14px    
                 border-radius: 7px
                 border: 1px solid $color-light-gray !important
@@ -129,14 +132,20 @@ footer
 @media #{$media-tablet} 
     body
         font-size: $font-size-regular-mobile
+        width: 97vw
+        display: flex
     .container
         width: auto
         height: auto
+        padding: 42px 21px
+        margin: 0 6px
+        border-radius: 20px 20px 100px 20px
+        margin
         .input
             gap: 14px
             .input-field
                 input
-                    width: 68px
+                    width: 97px
                     height: 50px
                     font-size: $font-size-regular-mobile
                 .alert
@@ -155,29 +164,13 @@ footer
         .result
             font-size: $font-size-large-mobile
 
-@media #{$media-mobile} 
-    body
-        font-size: $font-size-regular-mobile
+@media #{$media-mobile}
     .container
-        width: auto
-        height: auto
         .input
             display: flex
             justify-content: center
-            gap: 14px
             .input-field
                 input
-                    width: 68px
-                    height: 50px
                     font-size: $font-size-regular-mobile
         .submit
             justify-content: center
-            #submit-btn
-                height: 71px
-                width: 71px
-                margin: 50px 0
-                #submit-img
-                    width: 42px
-                    height: 40px
-        .result
-            font-size: $font-size-large-mobile

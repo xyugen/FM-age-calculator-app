@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&family=Space+Mono&display=swap");
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
@@ -16,9 +20,9 @@ body {
 
 .container {
   width: 714px;
-  height: 531px;
+  height: 581px;
   background: #FFFFFF;
-  padding: 42px 43px;
+  padding: 44px 43px;
   border-radius: 25px 25px 200px 25px;
 }
 .container .input {
@@ -38,7 +42,7 @@ body {
 }
 .container .input .input-field input {
   height: 65px;
-  width: 123px;
+  width: 143px;
   padding: 0 14px;
   border-radius: 7px;
   border: 1px solid #DBDBDB !important;
@@ -117,16 +121,21 @@ footer .attribution code {
 @media only screen and (max-width: 590px) {
   body {
     font-size: 19px;
+    width: 97vw;
+    display: flex;
   }
   .container {
     width: auto;
     height: auto;
+    padding: 42px 21px;
+    margin: 0 6px;
+    border-radius: 20px 20px 100px 20px;
   }
   .container .input {
     gap: 14px;
   }
   .container .input .input-field input {
-    width: 68px;
+    width: 97px;
     height: 50px;
     font-size: 19px;
   }
@@ -150,36 +159,14 @@ footer .attribution code {
   }
 }
 @media only screen and (max-width: 375px) {
-  body {
-    font-size: 19px;
-  }
-  .container {
-    width: auto;
-    height: auto;
-  }
   .container .input {
     display: flex;
     justify-content: center;
-    gap: 14px;
   }
   .container .input .input-field input {
-    width: 68px;
-    height: 50px;
     font-size: 19px;
   }
   .container .submit {
     justify-content: center;
-  }
-  .container .submit #submit-btn {
-    height: 71px;
-    width: 71px;
-    margin: 50px 0;
-  }
-  .container .submit #submit-btn #submit-img {
-    width: 42px;
-    height: 40px;
-  }
-  .container .result {
-    font-size: 57px;
   }
 }/*# sourceMappingURL=style.css.map */
