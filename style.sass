@@ -6,6 +6,10 @@ $font-size-small: 13px
 $font-size-regular: 32px
 $font-size-large: 106px
 
+$font-size-small-mobile: 13px
+$font-size-regular-mobile: 19px
+$font-size-large-mobile: 57px
+
 $font-weight-bold: 700
 $font-weight-extrabold: 800
 
@@ -20,6 +24,9 @@ $color-smokey-gray: #716F6F
 $color-off-black: #141414
 
 $transition: 0.15s
+
+$media-tablet: "only screen and (max-width: 590px)"
+$media-mobile: "only screen and (max-width: 375px)"
 
 body
     font-family: $font-stack
@@ -88,4 +95,54 @@ body
             line-height: 100%
             .result-data
                 color: $color-purple
-            
+
+@media #{$media-tablet} 
+    body
+        font-size: $font-size-regular-mobile
+    .container
+        width: auto
+        height: auto
+        .input
+            gap: 14px
+            .input-field
+                input
+                    width: 68px
+                    height: 50px
+                    font-size: $font-size-regular-mobile
+        .submit
+            #submit-btn
+                height: 71px
+                width: 71px
+                margin: 50px 0
+                #submit-img
+                    width: 42px
+                    height: 40px
+        .result
+            font-size: $font-size-large-mobile
+
+@media #{$media-mobile} 
+    body
+        font-size: $font-size-regular-mobile
+    .container
+        width: auto
+        height: auto
+        .input
+            display: flex
+            justify-content: center
+            gap: 14px
+            .input-field
+                input
+                    width: 68px
+                    height: 50px
+                    font-size: $font-size-regular-mobile
+        .submit
+            justify-content: center
+            #submit-btn
+                height: 71px
+                width: 71px
+                margin: 50px 0
+                #submit-img
+                    width: 42px
+                    height: 40px
+        .result
+            font-size: $font-size-large-mobile
