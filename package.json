@@ -1,0 +1,14 @@
+{
+  "name": "age-calculator-app-main",
+  "version": "1.0.0",
+  "description": "This is a solution to the Age calculator app challenge on Frontend Mentor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "xyugen",
+  "license": "ISC",
+  "dependencies": {
+    "sass": "^1.64.1"
+  }
+}
