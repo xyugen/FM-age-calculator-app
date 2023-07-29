@@ -2,10 +2,12 @@
 
 $font-stack: 'Poppins', sans-serif
 
+$font-size-extrasmall: 12px
 $font-size-small: 13px
 $font-size-regular: 32px
 $font-size-large: 106px
 
+$font-size-extrasmall-mobile: 11px
 $font-size-small-mobile: 13px
 $font-size-regular-mobile: 19px
 $font-size-large-mobile: 57px
@@ -48,6 +50,7 @@ body
         .input-field
             display: flex
             flex-direction: column
+            position: relative
             label
                 color: $color-smokey-gray
                 margin-bottom: 5px
@@ -60,7 +63,7 @@ body
                 border-radius: 7px
                 border: 1px solid $color-light-gray
                 font-size: $font-size-regular
-                font-weight: $font-weight-bold
+                font-weight: $font-weight-bold !important
             input:hover
                 cursor: pointer
             input:focus
@@ -70,8 +73,11 @@ body
             input::placeholder
                 color: $color-smokey-gray
             .alert
+                position: absolute
+                top: 100%
+                left: 0
                 color: $color-light-red
-                font-size: $font-size-small
+                font-size: $font-size-extrasmall
                 font-weight: $font-weight-regular
                 font-style: italic
     .submit
@@ -115,11 +121,16 @@ body
                     width: 68px
                     height: 50px
                     font-size: $font-size-regular-mobile
+                .alert
+                    position: relative
+                    width: 68px
+                    top: 0
+                    font-size: $font-size-extrasmall-mobile
         .submit
             #submit-btn
                 height: 71px
                 width: 71px
-                margin: 50px 0
+                margin: 50px
                 #submit-img
                     width: 42px
                     height: 40px

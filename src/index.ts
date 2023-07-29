@@ -82,7 +82,7 @@ const validateYear = () => {
     const yearValue: number = Number(yearInput.value);
     if (yearValue > currentYear) {
         yearInput.style.borderColor = colorLightRed;
-        yearLabel.style.color = colorLightRed;
+        yearLabel.style.color = colorLightRed
         yearAlert.innerHTML = "Must be in the past";
     }
 }
@@ -91,13 +91,13 @@ const validateYear = () => {
 const setValidStyle = (inputElement: HTMLInputElement, inputLabel: HTMLLabelElement) => {
     inputElement.style.borderColor = colorSmokeyGray;
     inputLabel.style.color = colorSmokeyGray;
-};
+}
 
 // Sets invalid style for input element and label
 const setInvalidStyle = (inputElement: HTMLInputElement, inputLabel: HTMLLabelElement) => {
     inputElement.style.borderColor = colorLightRed;
     inputLabel.style.color = colorLightRed;
-};
+}
 
 // Updates alert element and applies corresponding style for input element and label
 const updateAlertAndStyle = (

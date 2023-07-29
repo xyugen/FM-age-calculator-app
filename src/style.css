@@ -21,6 +21,7 @@ body {
 .container .input .input-field {
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 .container .input .input-field label {
   color: #716F6F;
@@ -35,7 +36,7 @@ body {
   border-radius: 7px;
   border: 1px solid #DBDBDB;
   font-size: 32px;
-  font-weight: 700;
+  font-weight: 700 !important;
 }
 .container .input .input-field input:hover {
   cursor: pointer;
@@ -52,8 +53,11 @@ body {
   color: #716F6F;
 }
 .container .input .input-field .alert {
+  position: absolute;
+  top: 100%;
+  left: 0;
   color: #FF5757;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 400;
   font-style: italic;
 }
@@ -107,10 +111,16 @@ body {
     height: 50px;
     font-size: 19px;
   }
+  .container .input .input-field .alert {
+    position: relative;
+    width: 68px;
+    top: 0;
+    font-size: 11px;
+  }
   .container .submit #submit-btn {
     height: 71px;
     width: 71px;
-    margin: 50px 0;
+    margin: 50px;
   }
   .container .submit #submit-btn #submit-img {
     width: 42px;
