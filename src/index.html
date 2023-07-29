@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="/src/style.css" />
+  <link rel="stylesheet" href="style.css" />
 
   <title>Frontend Mentor | Age calculator app</title>
 </head>
@@ -13,16 +13,19 @@
   <div class="container">
     <div class="input">
       <div class="input-field day">
-        <label for="day">DAY</label>
-        <input type="number" id="input-day" name="day" placeholder="DD" min="1" max="31" required />
+        <label for="input-day" id="day-label">DAY</label>
+        <input type="number" class="data-input" id="input-day" name="day" placeholder="DD" min="1" max="31" required />
+        <p class="alert" id="day-alert"></p>
       </div>
-      <div class="input-field month">
-        <label for="month">MONTH</label>
-        <input type="number" id="input-month" name="month" placeholder="MM" maxlength="2" min="1" max="12" required />
+      <div class="input-field month" id="month-label">
+        <label for="input-month">MONTH</label>
+        <input type="number" class="data-input" id="input-month" name="month" placeholder="MM" maxlength="2" min="1" max="12" required />
+        <p class="alert" id="month-alert"></p>
       </div>
-      <div class="input-field year">
-        <label for="year">YEAR</label>
-        <input type="number" id="input-year" name="year" placeholder="YYYY" min="1000" max="9999" required />
+      <div class="input-field year" id="year-label">
+        <label for="input-year">YEAR</label>
+        <input type="number" class="data-input" id="input-year" name="year" placeholder="YYYY" min="1000" max="9999" required />
+        <p class="alert" id="year-alert"></p>
       </div>
     </div>
 
@@ -37,6 +40,6 @@
     </div>
   </div>
 
-  <script src="/src/index.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>

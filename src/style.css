@@ -51,6 +51,12 @@ body {
 .container .input .input-field input::placeholder {
   color: #716F6F;
 }
+.container .input .input-field .alert {
+  color: #FF5757;
+  font-size: 13px;
+  font-weight: 400;
+  font-style: italic;
+}
 .container .submit {
   display: flex;
   justify-content: flex-end;
