@@ -1,5 +1,41 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
 body {
-  font: 100% "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
   background: #FFFFFF;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container .input {
+  display: flex;
+  gap: 35px;
+}
+.container .input .input-field {
+  display: flex;
+  flex-direction: column;
+}
+.container .input .input-field label {
+  color: #716F6F;
+  margin-bottom: 5px;
+  font-size: 13px;
+  letter-spacing: 2.6px;
+}
+.container .input .input-field input {
+  height: 65px;
+  width: 123px;
+  padding: 0 14px;
+  border-radius: 7px;
+  border: 1px solid #DBDBDB;
+  font-size: 32px;
+  font-weight: 700;
+}
+.container .input .input-field input::-moz-placeholder {
+  color: #716F6F;
+}
+.container .input .input-field input::placeholder {
+  color: #716F6F;
 }/*# sourceMappingURL=style.css.map */

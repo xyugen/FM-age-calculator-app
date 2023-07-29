@@ -12,27 +12,27 @@
 <body>
   <div class="container">
     <div class="input">
-      <div class="day">
+      <div class="input-field day">
         <label for="day">DAY</label>
         <input type="number" id="input-day" name="day" placeholder="DD" min="1" max="31" required />
       </div>
-      <div class="month">
+      <div class="input-field month">
         <label for="month">MONTH</label>
         <input type="number" id="input-month" name="month" placeholder="MM" maxlength="2" min="1" max="12" required />
       </div>
-      <div class="year">
+      <div class="input-field year">
         <label for="year">YEAR</label>
         <input type="number" id="input-year" name="year" placeholder="YYYY" min="1000" max="9999" required />
       </div>
     </div>
+
+    <button id="submit"><img id="submit-img" src="assets/images/icon-arrow.svg" alt="Arrow Button"></button>
 
     <div class="result">
       <p id="years"><span id="data-years">--</span>years</p>
       <p id="months"><span id="data-months">--</span>months</p>
       <p id="days"><span id="data-days">--</span>days</p>
     </div>
-
-    <button id="submit"><img id="submit-img" src="assets/images/icon-arrow.svg" alt="Arrow Button"></button>
   </div>
 </body>
 </html>

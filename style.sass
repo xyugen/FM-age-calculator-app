@@ -6,6 +6,11 @@ $font-size-small: 13px
 $font-size-regular: 32px
 $font-size-large: 106px
 
+$font-weight-bold: 700
+$font-weight-extrabold: 800
+
+$letter-spacing: 2.6px
+
 $color-purple: #854DFF
 $color-light-red: #FF5757
 $color-white: #FFFFFF
@@ -15,5 +20,39 @@ $color-smokey-gray: #716F6F
 $color-off-black: #141414
 
 body
-    font: 100% $font-stack
+    font-family: $font-stack
+    font-weight: $font-weight-bold
     background: $color-white
+    height: 100vh
+    width: 100vw
+    display: flex
+    justify-content: center
+    align-items: center
+
+.container
+    .input
+        display: flex
+        gap: 35px
+
+        .input-field
+            display: flex
+            flex-direction: column
+
+            label
+                color: $color-smokey-gray
+                margin-bottom: 5px
+                font-size: $font-size-small
+                letter-spacing: $letter-spacing
+            input
+                height: 65px
+                width: 123px
+                padding: 0 14px
+                
+                border-radius: 7px
+                border: 1px solid $color-light-gray
+
+                font-size: $font-size-regular
+                font-weight: $font-weight-bold
+            
+            input::placeholder
+                color: $color-smokey-gray
