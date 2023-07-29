@@ -10,6 +10,10 @@ body {
   align-items: center;
 }
 
+.container {
+  width: 714px;
+  height: 531px;
+}
 .container .input {
   display: flex;
   gap: 35px;
@@ -38,4 +42,21 @@ body {
 }
 .container .input .input-field input::placeholder {
   color: #716F6F;
+}
+.container .submit {
+  display: flex;
+  justify-content: flex-end;
+}
+.container .submit #submit-btn {
+  border: none;
+  border-radius: 50px;
+  height: 87px;
+  width: 87px;
+  outline: none;
+  background: #854DFF;
+  cursor: pointer;
+}
+.container .submit #submit-btn #submit-img {
+  width: 52px;
+  height: 50px;
 }/*# sourceMappingURL=style.css.map */

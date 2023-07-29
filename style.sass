@@ -30,14 +30,14 @@ body
     align-items: center
 
 .container
+    width: 714px
+    height: 531px
     .input
         display: flex
         gap: 35px
-
         .input-field
             display: flex
             flex-direction: column
-
             label
                 color: $color-smokey-gray
                 margin-bottom: 5px
@@ -46,13 +46,26 @@ body
             input
                 height: 65px
                 width: 123px
-                padding: 0 14px
-                
+                padding: 0 14px    
                 border-radius: 7px
                 border: 1px solid $color-light-gray
-
                 font-size: $font-size-regular
                 font-weight: $font-weight-bold
-            
             input::placeholder
                 color: $color-smokey-gray
+    .submit
+        display: flex
+        justify-content: flex-end
+
+        #submit-btn
+            border: none
+            border-radius: 50px
+            height: 87px
+            width: 87px
+            outline: none
+            background: $color-purple
+            cursor: pointer
+            #submit-img
+                width: 52px
+                height: 50px
+    .result
