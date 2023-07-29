@@ -27,7 +27,7 @@ $color-light-gray: #DBDBDB
 $color-smokey-gray: #716F6F
 $color-off-black: #141414
 
-$transition: 0.15s
+$transition: all 0.25s ease-in-out
 
 $media-tablet: "only screen and (max-width: 590px)"
 $media-mobile: "only screen and (max-width: 375px)"
@@ -75,12 +75,16 @@ body
                 border: 1px solid $color-light-gray !important
                 font-size: $font-size-regular
                 font-weight: $font-weight-bold !important
+                transition: $transition
+                outline: none
             input:hover
                 cursor: pointer
+                border: 1px solid $color-purple !important
             input:focus
                 cursor: text
                 caret-color: $color-purple
-                outline: 2px solid $color-purple
+                border: 2px solid $color-purple !important
+                transition: none
             input::placeholder
                 color: $color-smokey-gray
             .alert

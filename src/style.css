@@ -48,14 +48,18 @@ body {
   border: 1px solid #DBDBDB !important;
   font-size: 32px;
   font-weight: 700 !important;
+  transition: all 0.25s ease-in-out;
+  outline: none;
 }
 .container .input .input-field input:hover {
   cursor: pointer;
+  border: 1px solid #854DFF !important;
 }
 .container .input .input-field input:focus {
   cursor: text;
   caret-color: #854DFF;
-  outline: 2px solid #854DFF;
+  border: 2px solid #854DFF !important;
+  transition: none;
 }
 .container .input .input-field input::-moz-placeholder {
   color: #716F6F;
@@ -84,7 +88,7 @@ body {
   outline: none;
   background: #854DFF;
   cursor: pointer;
-  transition: 0.15s;
+  transition: all 0.25s ease-in-out;
 }
 .container .submit #submit-btn #submit-img {
   width: 52px;
