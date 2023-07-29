@@ -59,4 +59,16 @@ body {
 .container .submit #submit-btn #submit-img {
   width: 52px;
   height: 50px;
+}
+.container .result {
+  font-style: italic;
+  font-weight: 800;
+  font-size: 106px;
+}
+.container .result .result-text {
+  margin: 0;
+  line-height: 100%;
+}
+.container .result .result-text .result-data {
+  color: #854DFF;
 }/*# sourceMappingURL=style.css.map */
