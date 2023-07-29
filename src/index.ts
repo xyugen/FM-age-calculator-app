@@ -215,11 +215,37 @@ const calculate = () => {
     }
 }
 
+const animateNumber = (
+    initialValue: number,
+    finalValue: number,
+    duration: number,
+    elementToUpdate: HTMLElement
+) => {
+    const startTime = new Date().getTime();
+    const difference = finalValue - initialValue;
+
+    const animate = () => {
+        const currentTime = new Date().getTime();
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const currentNumber = initialValue + difference * progress;
+
+        elementToUpdate.innerHTML = Math.round(currentNumber).toString();
+
+        if (progress < 1) {
+            requestAnimationFrame(animate);
+        }
+    };
+
+    animate();
+};
+
 // Sets the age calculation result to HTML
 const setResult = (years: number, months: number, days: number) => {
-    yearsResult.innerHTML = String(years);
-    monthsResult.innerHTML = String(months);
-    daysResult.innerHTML = String(days);
+    const duration: number = 750;
+    animateNumber(0, years, duration, yearsResult);
+    animateNumber(0, months, duration, monthsResult);
+    animateNumber(0, days, duration, daysResult);
 }
 
 //// Event Listeners

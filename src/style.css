@@ -3,6 +3,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   background: #FFFFFF;
+  color: #141414;
   height: 100vh;
   width: 98vw;
   display: flex;
@@ -37,7 +38,7 @@ body {
   width: 123px;
   padding: 0 14px;
   border-radius: 7px;
-  border: 1px solid #DBDBDB;
+  border: 1px solid #DBDBDB !important;
   font-size: 32px;
   font-weight: 700 !important;
 }
