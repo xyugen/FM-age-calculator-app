@@ -2,7 +2,7 @@
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
-  background: #FFFFFF;
+  background: #F0F0F0;
   color: #141414;
   height: 100vh;
   width: 98vw;
@@ -17,6 +17,9 @@ body {
 .container {
   width: 714px;
   height: 531px;
+  background: #FFFFFF;
+  padding: 42px 43px;
+  border-radius: 25px 25px 200px 25px;
 }
 .container .input {
   display: flex;
