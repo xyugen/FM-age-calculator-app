@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [github.com/xyugen/FM-age-calculator-app](https://github.com/xyugen/FM-age-calculator-app)
+- Live Site URL: [xyugen.github.io/FM-age-calculator-app/](https://xyugen.github.io/FM-age-calculator-app/)
 
 ## My process
 
