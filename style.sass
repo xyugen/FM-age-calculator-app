@@ -19,6 +19,8 @@ $color-light-gray: #DBDBDB
 $color-smokey-gray: #716F6F
 $color-off-black: #141414
 
+$transition: 0.15s
+
 body
     font-family: $font-stack
     font-weight: $font-weight-bold
@@ -51,6 +53,12 @@ body
                 border: 1px solid $color-light-gray
                 font-size: $font-size-regular
                 font-weight: $font-weight-bold
+            input:hover
+                cursor: pointer
+            input:focus
+                cursor: text
+                caret-color: $color-purple
+                outline: 2px solid $color-purple
             input::placeholder
                 color: $color-smokey-gray
     .submit
@@ -65,9 +73,12 @@ body
             outline: none
             background: $color-purple
             cursor: pointer
+            transition: $transition
             #submit-img
                 width: 52px
                 height: 50px
+        #submit-btn:hover
+            background: $color-off-black
     .result
         font-style: italic
         font-weight: $font-weight-extrabold

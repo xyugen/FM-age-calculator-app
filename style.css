@@ -37,6 +37,14 @@ body {
   font-size: 32px;
   font-weight: 700;
 }
+.container .input .input-field input:hover {
+  cursor: pointer;
+}
+.container .input .input-field input:focus {
+  cursor: text;
+  caret-color: #854DFF;
+  outline: 2px solid #854DFF;
+}
 .container .input .input-field input::-moz-placeholder {
   color: #716F6F;
 }
@@ -55,10 +63,14 @@ body {
   outline: none;
   background: #854DFF;
   cursor: pointer;
+  transition: 0.15s;
 }
 .container .submit #submit-btn #submit-img {
   width: 52px;
   height: 50px;
+}
+.container .submit #submit-btn:hover {
+  background: #141414;
 }
 .container .result {
   font-style: italic;
