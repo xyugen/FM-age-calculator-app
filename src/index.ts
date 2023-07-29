@@ -17,6 +17,10 @@ const yearAlert: HTMLParagraphElement = document.getElementById('year-alert') as
 // Button element
 const submitButton: HTMLButtonElement = document.getElementById('submit-btn') as HTMLButtonElement;
 
+// Colors
+const colorLightRed: string = "#FF5757";
+const colorSmokeyGray: string = "#716F6F";
+
 //// Helper Functions
 // Returns the corresponding alert element for the given input element
 const getInputAlert = (inputElement: HTMLInputElement) => {
@@ -27,8 +31,23 @@ const getInputAlert = (inputElement: HTMLInputElement) => {
             return monthAlert;
         case yearInput:
             return yearAlert;
+        default:
+            return null;
     }
-    return null;
+}
+
+// Returns the corresponding label element for the given input element
+const getInputLabel = (inputElement: HTMLInputElement) => {
+    switch (inputElement) {
+        case dayInput:
+            return dayLabel;
+        case monthInput:
+            return monthLabel;
+        case yearInput:
+            return yearLabel;
+        default:
+            return null;
+    }
 }
 
 // Returns the type of input data (day, month, or year) for the given input element
@@ -62,41 +81,65 @@ const validateYear = () => {
     const currentYear: number = new Date().getFullYear();
     const yearValue: number = Number(yearInput.value);
     if (yearValue > currentYear) {
+        yearInput.style.borderColor = colorLightRed;
+        yearLabel.style.color = colorLightRed;
         yearAlert.innerHTML = "Must be in the past";
     }
 }
 
-// Validates the input element and updates the corresponding alert message
+// Sets valid style for input element and label
+const setValidStyle = (inputElement: HTMLInputElement, inputLabel: HTMLLabelElement) => {
+    inputElement.style.borderColor = colorSmokeyGray;
+    inputLabel.style.color = colorSmokeyGray;
+};
+
+// Sets invalid style for input element and label
+const setInvalidStyle = (inputElement: HTMLInputElement, inputLabel: HTMLLabelElement) => {
+    inputElement.style.borderColor = colorLightRed;
+    inputLabel.style.color = colorLightRed;
+};
+
+// Updates alert element and applies corresponding style for input element and label
+const updateAlertAndStyle = (
+        alertElement: HTMLParagraphElement,
+        inputElement: HTMLInputElement,
+        inputLabel: HTMLLabelElement,
+        message: string
+    ) => {
+    if (alertElement && inputLabel) {
+        alertElement.innerHTML = message;
+        setInvalidStyle(inputElement, inputLabel);
+    }
+};
+
+// Validates the input element and displays appropriate alert message and styles
 const validateInput = (inputElement: HTMLInputElement) => {
     const alertElement = getInputAlert(inputElement);
     const inputData = getInputData(inputElement);
+    const inputLabel = getInputLabel(inputElement);
 
-    if (hasEmptyValue(inputElement)) {
-        if (alertElement) {
-            alertElement.innerHTML = "This field is required";
+    if (alertElement && inputLabel) {
+        if (hasEmptyValue(inputElement)) {
+            updateAlertAndStyle(alertElement, inputElement, inputLabel, "This field is required");
             return;
-        }
-    } else {
-        if (alertElement) {
+        } else {
             alertElement.innerHTML = "";
+            setValidStyle(inputElement, inputLabel);
         }
-    }
 
-    if (!isValidValue(inputElement)) {
-        if (alertElement) {
-            alertElement.innerHTML = "Must be a valid " + inputData;
+        if (!isValidValue(inputElement)) {
+            updateAlertAndStyle(alertElement, inputElement, inputLabel, "Must be a valid " + inputData);
             return;
-        }
-    } else {
-        if (alertElement) {
+        } else {
             alertElement.innerHTML = "";
+            setValidStyle(inputElement, inputLabel);
         }
     }
 
     if (inputElement === yearInput) {
         validateYear();
     }
-}
+};
 
 // Event listener callback for input change event
 const handleInputValidation = (event: Event) => {

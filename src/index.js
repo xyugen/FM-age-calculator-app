@@ -9,6 +9,8 @@ const dayAlert = document.getElementById('day-alert');
 const monthAlert = document.getElementById('month-alert');
 const yearAlert = document.getElementById('year-alert');
 const submitButton = document.getElementById('submit-btn');
+const colorLightRed = "#FF5757";
+const colorSmokeyGray = "#716F6F";
 const getInputAlert = (inputElement) => {
     switch (inputElement) {
         case dayInput:
@@ -17,8 +19,21 @@ const getInputAlert = (inputElement) => {
             return monthAlert;
         case yearInput:
             return yearAlert;
+        default:
+            return null;
     }
-    return null;
+};
+const getInputLabel = (inputElement) => {
+    switch (inputElement) {
+        case dayInput:
+            return dayLabel;
+        case monthInput:
+            return monthLabel;
+        case yearInput:
+            return yearLabel;
+        default:
+            return null;
+    }
 };
 const getInputData = (inputElement) => {
     switch (inputElement) {
@@ -44,32 +59,45 @@ const validateYear = () => {
     const currentYear = new Date().getFullYear();
     const yearValue = Number(yearInput.value);
     if (yearValue > currentYear) {
+        yearInput.style.borderColor = colorLightRed;
+        yearLabel.style.color = colorLightRed;
         yearAlert.innerHTML = "Must be in the past";
+    }
+};
+const setValidStyle = (inputElement, inputLabel) => {
+    inputElement.style.borderColor = colorSmokeyGray;
+    inputLabel.style.color = colorSmokeyGray;
+};
+const setInvalidStyle = (inputElement, inputLabel) => {
+    inputElement.style.borderColor = colorLightRed;
+    inputLabel.style.color = colorLightRed;
+};
+const updateAlertAndStyle = (alertElement, inputElement, inputLabel, message) => {
+    if (alertElement && inputLabel) {
+        alertElement.innerHTML = message;
+        setInvalidStyle(inputElement, inputLabel);
     }
 };
 const validateInput = (inputElement) => {
     const alertElement = getInputAlert(inputElement);
     const inputData = getInputData(inputElement);
-    if (hasEmptyValue(inputElement)) {
-        if (alertElement) {
-            alertElement.innerHTML = "This field is required";
+    const inputLabel = getInputLabel(inputElement);
+    if (alertElement && inputLabel) {
+        if (hasEmptyValue(inputElement)) {
+            updateAlertAndStyle(alertElement, inputElement, inputLabel, "This field is required");
             return;
         }
-    }
-    else {
-        if (alertElement) {
+        else {
             alertElement.innerHTML = "";
+            setValidStyle(inputElement, inputLabel);
         }
-    }
-    if (!isValidValue(inputElement)) {
-        if (alertElement) {
-            alertElement.innerHTML = "Must be a valid " + inputData;
+        if (!isValidValue(inputElement)) {
+            updateAlertAndStyle(alertElement, inputElement, inputLabel, "Must be a valid " + inputData);
             return;
         }
-    }
-    else {
-        if (alertElement) {
+        else {
             alertElement.innerHTML = "";
+            setValidStyle(inputElement, inputLabel);
         }
     }
     if (inputElement === yearInput) {
