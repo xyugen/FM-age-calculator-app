@@ -1,13 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,700;1,400;1,800&family=Space+Mono&display=swap");
 body {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
   background: #FFFFFF;
   height: 100vh;
-  width: 100vw;
+  width: 98vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 }
 
 .container {
@@ -93,6 +96,18 @@ body {
 }
 .container .result .result-text .result-data {
   color: #854DFF;
+}
+
+footer {
+  position: absolute;
+  top: 100%;
+  font-size: 12px;
+}
+footer .attribution a {
+  color: #854DFF;
+}
+footer .attribution code {
+  font-family: "Space Mono", monospace;
 }
 
 @media only screen and (max-width: 590px) {
