@@ -17,6 +17,11 @@ const yearAlert: HTMLParagraphElement = document.getElementById('year-alert') as
 // Button element
 const submitButton: HTMLButtonElement = document.getElementById('submit-btn') as HTMLButtonElement;
 
+// Span element
+const yearsResult: HTMLSpanElement = document.getElementById('data-years') as HTMLSpanElement;
+const monthsResult: HTMLSpanElement = document.getElementById('data-months') as HTMLSpanElement;
+const daysResult: HTMLSpanElement = document.getElementById('data-days') as HTMLSpanElement;
+
 // Colors
 const colorLightRed: string = "#FF5757";
 const colorSmokeyGray: string = "#716F6F";
@@ -84,7 +89,9 @@ const validateYear = () => {
         yearInput.style.borderColor = colorLightRed;
         yearLabel.style.color = colorLightRed
         yearAlert.innerHTML = "Must be in the past";
+        return false;
     }
+    return true;
 }
 
 // Sets valid style for input element and label
@@ -121,7 +128,7 @@ const validateInput = (inputElement: HTMLInputElement) => {
     if (alertElement && inputLabel) {
         if (hasEmptyValue(inputElement)) {
             updateAlertAndStyle(alertElement, inputElement, inputLabel, "This field is required");
-            return;
+            return false;
         } else {
             alertElement.innerHTML = "";
             setValidStyle(inputElement, inputLabel);
@@ -129,7 +136,7 @@ const validateInput = (inputElement: HTMLInputElement) => {
 
         if (!isValidValue(inputElement)) {
             updateAlertAndStyle(alertElement, inputElement, inputLabel, "Must be a valid " + inputData);
-            return;
+            return false;
         } else {
             alertElement.innerHTML = "";
             setValidStyle(inputElement, inputLabel);
@@ -137,8 +144,10 @@ const validateInput = (inputElement: HTMLInputElement) => {
     }
 
     if (inputElement === yearInput) {
-        validateYear();
+        return validateYear();
     }
+
+    return true;
 };
 
 // Event listener callback for input change event
@@ -152,14 +161,65 @@ const validateAllInput = () => {
     const inputElements = document.getElementsByClassName('data-input');
     const inputArray = Array.from(inputElements) as HTMLInputElement[];
 
+    let isValid = true;
+
     inputArray.forEach((inputElement) => {
-        validateInput(inputElement as HTMLInputElement);
+        if (!validateInput(inputElement as HTMLInputElement)) {
+            isValid = false;
+        };
     });
+
+    return isValid;
 }
+
+const calculateAge = (birthDate: string) => {
+    const today = new Date();
+    const birthDateObj = new Date(birthDate);
+
+    let age = today.getFullYear() - birthDateObj.getFullYear();
+    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+    const dayDiff = today.getDate() - birthDateObj.getDate();
+
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        age--;
+    }
+
+    let years = age;
+    let months = monthDiff < 0 ? 12 + monthDiff : monthDiff;
+    let days = dayDiff < 0 ? daysInMonth(today.getMonth(), today.getFullYear()) + dayDiff : dayDiff;
+
+    return {
+        years: years,
+        months: months,
+        days: days
+    }
+}
+
+// Helper function to get the number of days in a specific month and year
+const daysInMonth = (month: number, year: number) => {
+    return new Date(year, month + 1, 0).getDate();
+};
 
 // Calculates the result by validating all input elements
 const calculate = () => {
-    validateAllInput();
+    const isValid = validateAllInput();
+    if (isValid) {
+        const yearValue = Number(yearInput.value);
+        const monthValue = Number(monthInput.value);
+        const dayValue = Number(dayInput.value);
+
+        const birthDate = `${yearValue}-${monthValue}-${dayValue}`;
+        const age = calculateAge(birthDate);
+        
+        setResult(age.years, age.months, age.days);
+    }
+}
+
+// Sets the age calculation result to HTML
+const setResult = (years: number, months: number, days: number) => {
+    yearsResult.innerHTML = String(years);
+    monthsResult.innerHTML = String(months);
+    daysResult.innerHTML = String(days);
 }
 
 //// Event Listeners
