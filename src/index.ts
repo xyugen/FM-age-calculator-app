@@ -27,6 +27,7 @@ const daysResult: HTMLSpanElement = document.getElementById('data-days') as HTML
 
 // Colors
 const colorLightRed: string = "#FF5757";
+const colorLightGray: string = "#DBDBDB";
 const colorSmokeyGray: string = "#716F6F";
 
 /**
@@ -38,7 +39,7 @@ const colorSmokeyGray: string = "#716F6F";
  * @param {HTMLInputElement} inputElement - The input element to get the alert for.
  * @returns {HTMLParagraphElement|null} The corresponding alert element or null if not found.
  */
-const getInputAlert = (inputElement: HTMLInputElement) => {
+const getInputAlert = (inputElement: HTMLInputElement): HTMLParagraphElement | null => {
     switch (inputElement) {
         case dayInput:
             return dayAlert;
@@ -56,7 +57,7 @@ const getInputAlert = (inputElement: HTMLInputElement) => {
  * @param {HTMLInputElement} inputElement - The input element to get the label for.
  * @returns {HTMLLabelElement|null} The corresponding label element or null if not found.
  */
-const getInputLabel = (inputElement: HTMLInputElement) => {
+const getInputLabel = (inputElement: HTMLInputElement): HTMLLabelElement | null => {
     switch (inputElement) {
         case dayInput:
             return dayLabel;
@@ -74,7 +75,7 @@ const getInputLabel = (inputElement: HTMLInputElement) => {
  * @param {HTMLInputElement} inputElement - The input element to get the input data type for.
  * @returns {string} The type of input data (day, month, or year).
  */
-const getInputData = (inputElement: HTMLInputElement) => {
+const getInputData = (inputElement: HTMLInputElement): string => {
     switch (inputElement) {
         case dayInput:
             return "day";
@@ -82,6 +83,8 @@ const getInputData = (inputElement: HTMLInputElement) => {
             return "month";
         case yearInput:
             return "year";
+        default:
+            return "";
     }
 }
 
@@ -90,7 +93,7 @@ const getInputData = (inputElement: HTMLInputElement) => {
  * @param {HTMLInputElement} inputElement - The input element to check.
  * @returns {boolean} True if the input element has an empty value, false otherwise.
  */
-const hasEmptyValue = (inputElement: HTMLInputElement) => {
+const hasEmptyValue = (inputElement: HTMLInputElement): boolean => {
     const value: number = Number(inputElement.value);
     return value === 0;
 }
@@ -100,7 +103,7 @@ const hasEmptyValue = (inputElement: HTMLInputElement) => {
  * @param {HTMLInputElement} inputElement - The input element to check.
  * @returns {boolean} True if the input element value is within the valid range, false otherwise.
  */
-const isValidValue = (inputElement: HTMLInputElement) => {
+const isValidValue = (inputElement: HTMLInputElement): boolean => {
     const value: number = Number(inputElement.value);
     const max: number = Number(inputElement.max);
     const min: number = Number(inputElement.min);
@@ -108,19 +111,41 @@ const isValidValue = (inputElement: HTMLInputElement) => {
 }
 
 /**
- * Validates the year input to ensure it's not in the future.
- * @returns {boolean} True if the year input is valid, false otherwise.
+ * Validates the date input to ensure it's not in the future.
+ * @returns {boolean} True if the date input is valid, false otherwise.
  */
-const validateYear = () => {
-    const currentYear: number = new Date().getFullYear();
+const validateDate = (): boolean => {
+    const today: Date = new Date();
+    const currentYear: number = today.getFullYear();
     const yearValue: number = Number(yearInput.value);
+
+    let isDateValid: boolean = true;
     if (yearValue > currentYear) {
         yearInput.style.borderColor = colorLightRed;
         yearLabel.style.color = colorLightRed
         yearAlert.innerHTML = "Must be in the past";
         return false;
+    } else if (yearValue === currentYear) {
+        const currentMonth: number = today.getMonth();
+        const currentDay: number = today.getDate();
+        const monthValue: number = Number(monthInput.value);
+        const dayValue: number = Number(dayInput.value);
+
+        if (monthValue > currentMonth) {
+            monthInput.style.borderColor = colorLightRed;
+            monthLabel.style.color = colorLightRed;
+            monthAlert.innerHTML = "Must be in the past";
+            isDateValid = false;
+        } else if ((monthValue === currentMonth) && (dayValue > currentDay)) {
+            dayInput.style.borderColor = colorLightRed;
+            dayLabel.style.color = colorLightRed;
+            dayAlert.innerHTML = "Must be in the past";
+            isDateValid = false;
+        }
+    } else {
+        resetAllStyle();
     }
-    return true;
+    return isDateValid;
 }
 
 /**
@@ -128,9 +153,23 @@ const validateYear = () => {
  * @param {HTMLInputElement} inputElement - The input element to set the valid style for.
  * @param {HTMLLabelElement} inputLabel - The label element corresponding to the input element.
  */
-const setValidStyle = (inputElement: HTMLInputElement, inputLabel: HTMLLabelElement) => {
-    inputElement.style.borderColor = colorSmokeyGray;
-    inputLabel.style.color = colorSmokeyGray;
+const setValidStyle = (inputElement: HTMLInputElement) => {
+    const inputLabel = getInputLabel(inputElement);
+    const inputAlert = getInputAlert(inputElement);
+    
+    inputElement.style.borderColor = colorLightGray;
+    
+    if (inputLabel)
+        inputLabel.style.color = colorSmokeyGray;
+    if (inputAlert)
+        inputAlert.innerHTML = "";
+}
+
+const resetAllStyle = () => {
+    const inputArray = [dayInput, monthInput, yearInput];
+    inputArray.forEach((inputElement) => {
+        setValidStyle(inputElement);
+    });
 }
 
 /**
@@ -167,7 +206,7 @@ const updateAlertAndStyle = (
  * @param {HTMLInputElement} inputElement - The input element to validate.
  * @returns {boolean} True if the input is valid, false otherwise.
  */
-const validateInput = (inputElement: HTMLInputElement) => {
+const validateInput = (inputElement: HTMLInputElement): boolean => {
     const alertElement = getInputAlert(inputElement);
     const inputData = getInputData(inputElement);
     const inputLabel = getInputLabel(inputElement);
@@ -178,7 +217,7 @@ const validateInput = (inputElement: HTMLInputElement) => {
             return false;
         } else {
             alertElement.innerHTML = "";
-            setValidStyle(inputElement, inputLabel);
+            setValidStyle(inputElement);
         }
 
         if (!isValidValue(inputElement)) {
@@ -186,15 +225,11 @@ const validateInput = (inputElement: HTMLInputElement) => {
             return false;
         } else {
             alertElement.innerHTML = "";
-            setValidStyle(inputElement, inputLabel);
+            setValidStyle(inputElement);
         }
     }
 
-    if (inputElement === yearInput) {
-        return validateYear();
-    }
-
-    return true;
+    return validateDate();
 };
 
 /**
@@ -210,7 +245,7 @@ const handleInputValidation = (event: Event) => {
  * Validates all input elements.
  * @returns {boolean} True if all inputs are valid, false if at least one is invalid.
  */
-const validateAllInput = () => {
+const validateAllInput = (): boolean => {
     const inputElements = document.getElementsByClassName('data-input');
     const inputArray = Array.from(inputElements) as HTMLInputElement[];
 
@@ -230,7 +265,7 @@ const validateAllInput = () => {
  * @param {string} birthDate - The birth date in the format "YYYY-MM-DD".
  * @returns {Object} An object containing the calculated age in years, months, and days.
  */
-const calculateAge = (birthDate: string) => {
+const calculateAge = (birthDate: string): object => {
     const today = new Date();
     const birthDateObj = new Date(birthDate);
 
@@ -250,7 +285,7 @@ const calculateAge = (birthDate: string) => {
         years: years,
         months: months,
         days: days
-    }
+    };
 }
 
 /**
@@ -259,9 +294,22 @@ const calculateAge = (birthDate: string) => {
  * @param {number} year - The year.
  * @returns {number} The number of days in the specified month and year.
  */
-const daysInMonth = (month: number, year: number) => {
+const daysInMonth = (month: number, year: number): number => {
     return new Date(year, month + 1, 0).getDate();
 };
+
+/**
+ * Represents a person's age.
+ * @interface
+ * @property {number} years - The number of years in the age.
+ * @property {number} months - The number of months in the age.
+ * @property {number} days - The number of days in the age.
+ */
+interface Age {
+    years: number;
+    months: number;
+    days: number
+}
 
 /**
  * Calculates the result by validating all input elements and displays it.
@@ -274,7 +322,7 @@ const calculate = () => {
         const dayValue = Number(dayInput.value);
 
         const birthDate = `${yearValue}-${monthValue}-${dayValue}`;
-        const age = calculateAge(birthDate);
+        const age: Age = calculateAge(birthDate) as Age;
         
         setResult(age.years, age.months, age.days);
     }

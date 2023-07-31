@@ -45,9 +45,9 @@ body {
   width: 143px;
   padding: 0 14px;
   border-radius: 7px;
-  border: 1px solid #DBDBDB !important;
+  border: 1px solid #DBDBDB;
   font-size: 32px;
-  font-weight: 700 !important;
+  font-weight: 700;
   transition: all 0.25s ease-in-out;
   outline: none;
 }

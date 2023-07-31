@@ -13,6 +13,7 @@ const yearsResult = document.getElementById('data-years');
 const monthsResult = document.getElementById('data-months');
 const daysResult = document.getElementById('data-days');
 const colorLightRed = "#FF5757";
+const colorLightGray = "#DBDBDB";
 const colorSmokeyGray = "#716F6F";
 const getInputAlert = (inputElement) => {
     switch (inputElement) {
@@ -46,6 +47,8 @@ const getInputData = (inputElement) => {
             return "month";
         case yearInput:
             return "year";
+        default:
+            return "";
     }
 };
 const hasEmptyValue = (inputElement) => {
@@ -58,20 +61,54 @@ const isValidValue = (inputElement) => {
     const min = Number(inputElement.min);
     return value >= min && value <= max;
 };
-const validateYear = () => {
-    const currentYear = new Date().getFullYear();
+const validateDate = () => {
+    const today = new Date();
+    const currentYear = today.getFullYear();
     const yearValue = Number(yearInput.value);
+    let isDateValid = true;
     if (yearValue > currentYear) {
         yearInput.style.borderColor = colorLightRed;
         yearLabel.style.color = colorLightRed;
         yearAlert.innerHTML = "Must be in the past";
         return false;
     }
-    return true;
+    else if (yearValue === currentYear) {
+        const currentMonth = today.getMonth();
+        const currentDay = today.getDate();
+        const monthValue = Number(monthInput.value);
+        const dayValue = Number(dayInput.value);
+        if (monthValue > currentMonth) {
+            monthInput.style.borderColor = colorLightRed;
+            monthLabel.style.color = colorLightRed;
+            monthAlert.innerHTML = "Must be in the past";
+            isDateValid = false;
+        }
+        else if ((monthValue === currentMonth) && (dayValue > currentDay)) {
+            dayInput.style.borderColor = colorLightRed;
+            dayLabel.style.color = colorLightRed;
+            dayAlert.innerHTML = "Must be in the past";
+            isDateValid = false;
+        }
+    }
+    else {
+        resetAllStyle();
+    }
+    return isDateValid;
 };
-const setValidStyle = (inputElement, inputLabel) => {
-    inputElement.style.borderColor = colorSmokeyGray;
-    inputLabel.style.color = colorSmokeyGray;
+const setValidStyle = (inputElement) => {
+    const inputLabel = getInputLabel(inputElement);
+    const inputAlert = getInputAlert(inputElement);
+    inputElement.style.borderColor = colorLightGray;
+    if (inputLabel)
+        inputLabel.style.color = colorSmokeyGray;
+    if (inputAlert)
+        inputAlert.innerHTML = "";
+};
+const resetAllStyle = () => {
+    const inputArray = [dayInput, monthInput, yearInput];
+    inputArray.forEach((inputElement) => {
+        setValidStyle(inputElement);
+    });
 };
 const setInvalidStyle = (inputElement, inputLabel) => {
     inputElement.style.borderColor = colorLightRed;
@@ -94,7 +131,7 @@ const validateInput = (inputElement) => {
         }
         else {
             alertElement.innerHTML = "";
-            setValidStyle(inputElement, inputLabel);
+            setValidStyle(inputElement);
         }
         if (!isValidValue(inputElement)) {
             updateAlertAndStyle(alertElement, inputElement, inputLabel, "Must be a valid " + inputData);
@@ -102,13 +139,10 @@ const validateInput = (inputElement) => {
         }
         else {
             alertElement.innerHTML = "";
-            setValidStyle(inputElement, inputLabel);
+            setValidStyle(inputElement);
         }
     }
-    if (inputElement === yearInput) {
-        return validateYear();
-    }
-    return true;
+    return validateDate();
 };
 const handleInputValidation = (event) => {
     const inputElement = event.target;
