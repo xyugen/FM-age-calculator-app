@@ -83,7 +83,8 @@ body {
   position: relative;
 }
 .container .submit #submit-divider {
-  border-left: 1px solid #DBDBDB;
+  border: none;
+  background-color: #DBDBDB;
   height: 1px;
   width: 100%;
   position: absolute;
