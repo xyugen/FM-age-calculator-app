@@ -79,6 +79,15 @@ body {
 .container .submit {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+.container .submit #submit-divider {
+  border-left: 1px solid #DBDBDB;
+  height: 1px;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 .container .submit #submit-btn {
   border: none;
@@ -89,6 +98,7 @@ body {
   background: #854DFF;
   cursor: pointer;
   transition: all 0.25s ease-in-out;
+  z-index: 2;
 }
 .container .submit #submit-btn #submit-img {
   width: 52px;

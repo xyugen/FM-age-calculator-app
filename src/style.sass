@@ -98,7 +98,14 @@ body
     .submit
         display: flex
         justify-content: flex-end
-
+        align-items: center
+        position: relative
+        #submit-divider
+            border-left: 1px solid $color-light-gray
+            height: 1px
+            width: 100%
+            position: absolute
+            z-index: 1
         #submit-btn
             border: none
             border-radius: 50px
@@ -108,6 +115,7 @@ body
             background: $color-purple
             cursor: pointer
             transition: $transition
+            z-index: 2
             #submit-img
                 width: 52px
                 height: 50px
