@@ -135,6 +135,7 @@ const validateDate = (): boolean => {
             monthInput.style.borderColor = colorLightRed;
             monthLabel.style.color = colorLightRed;
             monthAlert.innerHTML = "Must be in the past";
+            console.log(currentMonth);
             isDateValid = false;
         } else if ((monthValue === currentMonth) && (dayValue > currentDay)) {
             dayInput.style.borderColor = colorLightRed;
