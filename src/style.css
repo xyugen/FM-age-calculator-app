@@ -146,6 +146,8 @@ footer .attribution code {
     border-radius: 20px 20px 100px 20px;
   }
   .container .input {
+    display: flex;
+    justify-content: center;
     gap: 14px;
   }
   .container .input .input-field input {
@@ -159,6 +161,9 @@ footer .attribution code {
     top: 0;
     font-size: 11px;
   }
+  .container .submit {
+    justify-content: center;
+  }
   .container .submit #submit-btn {
     height: 71px;
     width: 71px;
@@ -170,17 +175,5 @@ footer .attribution code {
   }
   .container .result {
     font-size: 57px;
-  }
-}
-@media only screen and (max-width: 375px) {
-  .container .input {
-    display: flex;
-    justify-content: center;
-  }
-  .container .input .input-field input {
-    font-size: 19px;
-  }
-  .container .submit {
-    justify-content: center;
   }
 }/*# sourceMappingURL=style.css.map */

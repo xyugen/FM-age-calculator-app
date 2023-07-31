@@ -154,6 +154,8 @@ footer
         border-radius: 20px 20px 100px 20px
         margin
         .input
+            display: flex
+            justify-content: center
             gap: 14px
             .input-field
                 input
@@ -166,6 +168,7 @@ footer
                     top: 0
                     font-size: $font-size-extrasmall-mobile
         .submit
+            justify-content: center
             #submit-btn
                 height: 71px
                 width: 71px
@@ -175,14 +178,3 @@ footer
                     height: 40px
         .result
             font-size: $font-size-large-mobile
-
-@media #{$media-mobile}
-    .container
-        .input
-            display: flex
-            justify-content: center
-            .input-field
-                input
-                    font-size: $font-size-regular-mobile
-        .submit
-            justify-content: center
