@@ -73,7 +73,7 @@ const validateDate = () => {
         return false;
     }
     else if (yearValue === currentYear) {
-        const currentMonth = today.getMonth();
+        const currentMonth = today.getMonth() + 1;
         const currentDay = today.getDate();
         const monthValue = Number(monthInput.value);
         const dayValue = Number(dayInput.value);
@@ -81,6 +81,7 @@ const validateDate = () => {
             monthInput.style.borderColor = colorLightRed;
             monthLabel.style.color = colorLightRed;
             monthAlert.innerHTML = "Must be in the past";
+            console.log(currentMonth);
             isDateValid = false;
         }
         else if ((monthValue === currentMonth) && (dayValue > currentDay)) {
@@ -164,14 +165,14 @@ const calculateAge = (birthDate) => {
     const today = new Date();
     const birthDateObj = new Date(birthDate);
     let age = today.getFullYear() - birthDateObj.getFullYear();
-    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+    const monthDiff = (today.getMonth() + 1) - (birthDateObj.getMonth() + 1);
     const dayDiff = today.getDate() - birthDateObj.getDate();
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
         age--;
     }
     let years = age;
     let months = monthDiff < 0 ? 12 + monthDiff : monthDiff;
-    let days = dayDiff < 0 ? daysInMonth(today.getMonth(), today.getFullYear()) + dayDiff : dayDiff;
+    let days = dayDiff < 0 ? daysInMonth(today.getMonth() + 1, today.getFullYear()) + dayDiff : dayDiff;
     return {
         years: years,
         months: months,

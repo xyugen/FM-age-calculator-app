@@ -126,7 +126,7 @@ const validateDate = (): boolean => {
         yearAlert.innerHTML = "Must be in the past";
         return false;
     } else if (yearValue === currentYear) {
-        const currentMonth: number = today.getMonth();
+        const currentMonth: number = today.getMonth() + 1;
         const currentDay: number = today.getDate();
         const monthValue: number = Number(monthInput.value);
         const dayValue: number = Number(dayInput.value);
@@ -135,6 +135,7 @@ const validateDate = (): boolean => {
             monthInput.style.borderColor = colorLightRed;
             monthLabel.style.color = colorLightRed;
             monthAlert.innerHTML = "Must be in the past";
+            console.log(currentMonth);
             isDateValid = false;
         } else if ((monthValue === currentMonth) && (dayValue > currentDay)) {
             dayInput.style.borderColor = colorLightRed;
@@ -149,9 +150,8 @@ const validateDate = (): boolean => {
 }
 
 /**
- * Sets valid style for input element and label.
+ * Sets valid style for input element, label, and alert.
  * @param {HTMLInputElement} inputElement - The input element to set the valid style for.
- * @param {HTMLLabelElement} inputLabel - The label element corresponding to the input element.
  */
 const setValidStyle = (inputElement: HTMLInputElement) => {
     const inputLabel = getInputLabel(inputElement);
@@ -159,12 +159,13 @@ const setValidStyle = (inputElement: HTMLInputElement) => {
     
     inputElement.style.borderColor = colorLightGray;
     
-    if (inputLabel)
-        inputLabel.style.color = colorSmokeyGray;
-    if (inputAlert)
-        inputAlert.innerHTML = "";
+    if (inputLabel) inputLabel.style.color = colorSmokeyGray;
+    if (inputAlert) inputAlert.innerHTML = "";
 }
 
+/**
+ * Sets valid style for all input elements
+ */
 const resetAllStyle = () => {
     const inputArray = [dayInput, monthInput, yearInput];
     inputArray.forEach((inputElement) => {
@@ -270,7 +271,7 @@ const calculateAge = (birthDate: string): object => {
     const birthDateObj = new Date(birthDate);
 
     let age = today.getFullYear() - birthDateObj.getFullYear();
-    const monthDiff = today.getMonth() - birthDateObj.getMonth();
+    const monthDiff = (today.getMonth() + 1) - (birthDateObj.getMonth() + 1);
     const dayDiff = today.getDate() - birthDateObj.getDate();
 
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
@@ -279,7 +280,7 @@ const calculateAge = (birthDate: string): object => {
 
     let years = age;
     let months = monthDiff < 0 ? 12 + monthDiff : monthDiff;
-    let days = dayDiff < 0 ? daysInMonth(today.getMonth(), today.getFullYear()) + dayDiff : dayDiff;
+    let days = dayDiff < 0 ? daysInMonth(today.getMonth() + 1, today.getFullYear()) + dayDiff : dayDiff;
 
     return {
         years: years,
